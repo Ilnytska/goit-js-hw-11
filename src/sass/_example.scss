@@ -1,19 +1,22 @@
-body {
-  width: auto;
-  height: 100vw;
+.body-section {
+  width: 100%;
+  height:auto;
   background: linear-gradient(to bottom right, rgb(105, 199, 236), rgb(245, 179, 245));
-
+padding-top: 100px;
 }
 .container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: auto;
-  padding-top: 100px;
-  padding-bottom: 100px;
-
+  max-width: 320px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
 }
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 1600px;
+  }
+}
+
 .search-form {
   display: flex;
   justify-content: center;
@@ -28,7 +31,7 @@ border-radius: 4px;
 border: transparent;
 
 }
-button{
+.btn-search {
   width: auto;
   height: 30px;
   border-radius: 4px;
@@ -37,13 +40,14 @@ button{
   border: transparent;
 
 }
-button.btn.btn-primary.button{
+.load-more{
   width: 150px;
   height: 30px;
   border-radius: 4px;
   background-color: rgb(245, 179, 245);
-   display: block;
+   display: flex;
    align-items: center;
+   justify-content: center;
    cursor: pointer;
    border: transparent;
 }
@@ -54,3 +58,51 @@ button.btn.btn-primary.button{
 .button>.spinner.is-hidden {
   display: none;
 }
+.gallery {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-left: -10px;
+  margin-top: -10px;
+  margin-bottom: 50px;
+}
+
+.photo-card {
+  position: relative;
+  margin-left: 10px;
+  margin-top: 10px;
+  flex-basis: calc((100% - 40px) / 4);
+  border-radius: 2px;
+}
+
+// .photo-card img {
+//   height: 205px;
+  
+
+// }
+.info {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  background-color: rgba($color: rgb(118, 169, 226), $alpha: 0.3);
+  padding: 2px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  color: rgb(131, 120, 231);
+  padding: 2px 6px;
+  font-size: 14px;
+
+  
+}
+
+// @media screen and (min-width: 768px) {
+//   .info-item {
+//     font-size: 12px;
+  // }
+// }
