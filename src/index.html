@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Заголовок страницы</title>
+    <title>Search image pixabay</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css"
@@ -13,31 +13,26 @@
   </head>
   <body>
     <!-- Так добавляются фрагменты в главные HTML-файлы страниц. -->
-<div class="container">
-    <form class="search-form" id="search-form">
-      <input type="text" name="searchQuery" autocomplete="off" placeholder="Search images..." />
-      <button type="submit">Search</button>
-    </form> 
-  
-    <div class="gallery">
-      <!-- Карточки изображений -->
-    </div>
-   <button
-      type="button"
-      class="btn btn-primary button"
-      data-action="load-more"
-    >
-      <span
-        class="spinner-border spinner-border-sm spinner is-hidden"
-        role="status"
-        aria-hidden="true"
-      ></span>
+    <div class="body-section">
+      <form class="search-form" id="search-form">
+        <input
+          type="text"
+          class="btn-submit"
+          name="searchQuery"
+          autocomplete="off"
+          placeholder="Searching images.."
+        />
+        <button class="btn-search" type="submit">Let`s search!</button>
+      </form>
+      <div class="container">
+        <div class="gallery"></div>
 
-      <span class="label">Показать ещё</span>
-    </button>
-  </div>
-    
-   </div>
+        <button type="button" class="load-more" data-action="load-more">
+          <span class="label">Load more!</span>
+        </button>
+      </div>
+    </div>
+
     <!-- Скрипт идёт последним в разметке. В нём уже подключен главный SASS-файл. -->
     <script src="./index.js"></script>
   </body>
