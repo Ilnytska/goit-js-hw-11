@@ -51,13 +51,10 @@ border: transparent;
    cursor: pointer;
    border: transparent;
 }
-.button.is-hidden {
+.load-more.is-hidden {
   display: none;
 }
 
-.button>.spinner.is-hidden {
-  display: none;
-}
 .gallery {
   display: flex;
   justify-content: center;
@@ -73,6 +70,7 @@ border: transparent;
   margin-top: 10px;
   flex-basis: calc((100% - 40px) / 4);
   border-radius: 2px;
+   height: 205px;
 }
 
 // .photo-card img {
