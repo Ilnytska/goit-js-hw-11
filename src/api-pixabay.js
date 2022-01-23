@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import Notiflix from 'notiflix';
 const BASE_URL = 'https://pixabay.com/api/';
 const API_KEY = '25288622-fd4eae463e774787da6ad1fab';
 const IMAGES_PER_PAGE = 40;
@@ -45,9 +45,14 @@ export default class ApiGetImages {
 
   async getImages() {
     const params = this.getOptions();
-
+try {
     const response = await axios.get(`?${params}`);
 
     return response.data;
+  } catch (error) {
+  
+  return
+  }
+    
   }
 }
