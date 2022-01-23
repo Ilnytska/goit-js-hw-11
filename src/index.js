@@ -4,22 +4,21 @@ import Notiflix from 'notiflix';
 import SimpleLightbox from "simplelightbox";
 import galleryhbs from './gallery.hbs';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-import LoadMoreBtn from './load-btn';
+// import LoadMoreBtn from './load-btn';
 let gallery = null;
 const refs = {
     galleryRef: document.querySelector('.gallery'),
     formRef: document.querySelector('#search-form'),
-    
+    sentinel: document.querySelector('#sentinel'),
 }
-const loadMoreBtn = new LoadMoreBtn({
-  selector: '[data-action="load-more"]',
-  hidden: true,
-});
+// const loadMoreBtn = new LoadMoreBtn({
+//   selector: '[data-action="load-more"]',
+//   hidden: true,
+// });
 const apiGetImages = new ApiGetImages();
 
-
 function fetchImages() {
-     loadMoreBtn.disable();
+    //  loadMoreBtn.disable();
   apiGetImages.getImages().then(({ hits, totalHits }) => {
       renderMarkup(hits)
       apiGetImages.incrementPage();
@@ -33,10 +32,11 @@ function fetchImages() {
       }
       Notiflix.Notify.info(`Hooray! We found ${totalHits} images.`);
        if (apiGetImages.page > totalHits / apiGetImages.perPage) {
-            Notiflix.Notify.warning(`We're sorry, but you've reached the end of search results.`);
-        
+         Notiflix.Notify.warning(`We're sorry, but you've reached the end of search results.`);
+         
+         return;
         }
-      loadMoreBtn.enable();
+      // loadMoreBtn.enable();
        smoothScroll();
   });
 
@@ -69,7 +69,7 @@ function createLightBox() {
 }
 
 function onSubmit(e) {
-    loadMoreBtn.show();
+    // loadMoreBtn.show();
   e.preventDefault();
   apiGetImages.resetPage();
   refs.galleryRef.innerHTML = '';
@@ -79,12 +79,25 @@ function onSubmit(e) {
     
   if (apiGetImages.apiQuery === '') {
       Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
+   
     return;
   }
     fetchImages(); 
 
 }
+const onEntry = entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && apiGetImages.apiQuery !== '') {
+      fetchImages();
+    }
+  });
+};
+
+const observer = new IntersectionObserver(onEntry, {
+  rootMargin: '150px',
+});
+observer.observe(refs.sentinel);
 
 
 refs.formRef.addEventListener('submit', onSubmit);
-loadMoreBtn.refs.button.addEventListener('click', fetchImages); 
+// loadMoreBtn.refs.button.addEventListener('click', fetchImages); 
